@@ -1,12 +1,14 @@
-import { shallowMount } from '@vue/test-utils'
-import HelloWorld from '@/components/HelloWorld.vue'
+describe('Example', () => {
+ 
+  it('Should do something', () => {
+    console.log('first test')
+  })
+ 
+  it('Should do something else', () => {
+    console.log('second test')
+  })
 
-describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
+  it.only('Should do that', () => {
+    console.log('third test')
   })
 })
