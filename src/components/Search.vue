@@ -7,17 +7,17 @@
 <script>
 import axios from 'axios'
 
-const BASE_URL = `http://www.omdbapi.com/?apikey=${process.env.VUE_APP_OMDB_KEY}`
+const BASE_URL = `https://www.omdbapi.com/?apikey=${process.env.VUE_APP_OMDB_KEY}`
 
 export default {
   name: 'search',
-  data () {
+  data() {
     return {
       searchQuery: ''
     }
   },
   methods: {
-    async search () {
+    async search() {
       const requestURL = `${BASE_URL}&s=${this.searchQuery}`
       const response = await axios.get(requestURL)
       if (response.status === 200) {
