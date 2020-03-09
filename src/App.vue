@@ -1,29 +1,31 @@
 <template>
   <div id="app">
     <search @search="changeMovieResults" />
+    <movie-list :movies="movies"></movie-list>
   </div>
 </template>
 
 <script>
 import Search from './components/Search'
+import MovieList from './components/MovieList'
 
 export default {
   name: 'App',
   components: {
-    Search
+    Search,
+    MovieList
   },
-  data () {
+  data() {
     return {
       movies: []
     }
   },
   methods: {
-    changeMovieResults (results) {
+    changeMovieResults(results) {
       this.movies = results
     }
   }
 }
 </script>
 
-<style>
-</style>
+<style></style>
