@@ -7,13 +7,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       clicks: 0
     }
   },
   methods: {
-    increase() {
+    increase () {
       this.clicks += 1
     }
   }

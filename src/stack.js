@@ -1,18 +1,18 @@
 class Stack {
-  constructor(capacity) {
+  constructor (capacity) {
     this.items = []
     this.capacity = capacity
   }
 
-  isEmpty() {
+  isEmpty () {
     return this.items.length === 0
   }
 
-  isFull() {
+  isFull () {
     return this.items.length === this.capacity
   }
 
-  push(element) {
+  push (element) {
     if (this.isFull()) {
       return 'Full'
     }
@@ -20,11 +20,11 @@ class Stack {
     return element
   }
 
-  pop() {
+  pop () {
     return this.isEmpty() ? 'Empty' : this.items.pop()
   }
 
-  peek() {
+  peek () {
     return this.isEmpty() ? 'Empty' : this.items[this.items.length - 1]
   }
 }
