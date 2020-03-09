@@ -14,14 +14,13 @@ describe('components/Search', () => {
     input.setValue('kingsman')
   })
 
-  const mockThenTrigger = (response) => {
+  const mockThenTrigger = response => {
     axios.get.mockImplementation(async () => response)
     input.trigger('keyup.enter')
   }
 
   it('Should send a request to the right API and append the search parameter', () => {
     const response = { status: 200, data: { Response: 'True' } }
-
     mockThenTrigger(response)
 
     expect(axios.get).toHaveBeenCalledWith(
@@ -36,7 +35,6 @@ describe('components/Search', () => {
       'Kingsman: The Golden Circle'
     ]
     const response = { status: 200, data: { Response: 'True', Search: movies } }
-
     mockThenTrigger(response)
 
     await Vue.nextTick()
@@ -48,7 +46,6 @@ describe('components/Search', () => {
 
   it('Should not emit the results if the status is different than 200', async () => {
     const response = { status: 500, data: { Response: 'True', Search: [1] } }
-
     mockThenTrigger(response)
 
     await Vue.nextTick()
@@ -58,11 +55,40 @@ describe('components/Search', () => {
 
   it('Should not emit the results if the reponse retrieved is False', async () => {
     const response = { status: 200, data: { Response: 'False' } }
-
     mockThenTrigger(response)
 
     await Vue.nextTick()
 
     expect(wrapper.emitted().search).toBeFalsy()
+  })
+
+  it('Should display an error message if the API responds with an error', async () => {
+    const response = {
+      status: 200,
+      data: { Response: 'False', Error: 'Too many results.' }
+    }
+    mockThenTrigger(response)
+
+    await Vue.nextTick()
+
+    const error = wrapper.find('span')
+    expect(error.text()).toBe(response.data.Error)
+  })
+
+  it('Should make the error message disappear if a new search is successfaul', async () => {
+    wrapper.vm.error = 'Too many results.'
+
+    await Vue.nextTick()
+
+    let error = wrapper.find('span')
+    expect(error.exists()).toBe(true)
+
+    const response = { status: 200, data: { Response: 'False' } }
+    mockThenTrigger(response)
+
+    await Vue.nextTick()
+
+    error = wrapper.find('span')
+    expect(error.exists()).toBe(false)
   })
 })
