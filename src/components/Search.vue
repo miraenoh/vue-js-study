@@ -31,7 +31,6 @@ export default {
       const requestURL = `${BASE_URL}&s=${this.searchQuery}`
       const response = await axios.get(requestURL)
       if (response.status === 200) {
-        console.log(response)
         const data = response.data
         if (data.Response === 'True') {
           this.error = ''
