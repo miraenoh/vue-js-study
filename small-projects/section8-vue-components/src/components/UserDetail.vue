@@ -5,6 +5,7 @@
     <p>User Name: {{ name }}</p>
     <p>Reversed Name: {{ switchName() }}</p>
     <button @click="resetName">Reset Name</button>
+    <button @click="resetFn()">Reset Name Callback</button>
   </div>
 </template>
 
@@ -18,7 +19,8 @@ export default {
       type: String,
       required: true,
       default: "anonymous"
-    }
+    },
+    resetFn: Function
   },
   methods: {
     switchName() {
@@ -27,6 +29,7 @@ export default {
         .reverse()
         .join("");
     },
+    // Alternative of the custom event for communication
     resetName() {
       this.name = "Max";
       //   Emit a cumtom event
