@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { eventBus } from "../main";
+
 export default {
   //   props: ['name'], // props as an array
   props: {
@@ -35,6 +37,11 @@ export default {
       //   Emit a cumtom event
       this.$emit("nameWasReset", this.name);
     }
+  },
+  created() {
+    eventBus.$on("ageWasEdited", age => {
+      this.userAge = age;
+    });
   }
 };
 </script>
