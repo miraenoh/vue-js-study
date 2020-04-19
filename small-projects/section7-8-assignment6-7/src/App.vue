@@ -13,14 +13,14 @@
 
 <script>
 import Header from "./components/Shared/Header.vue";
-import ServerList from "./components/Server/ServerList.vue";
+import Servers from "./components/Server/Servers.vue";
 import ServerDetails from "./components/Server/ServerDetails.vue";
 import Footer from "./components/Shared/Footer.vue";
 
 export default {
   components: {
     "my-header": Header,
-    "my-server-list": ServerList,
+    "my-server-list": Servers,
     "my-server-details": ServerDetails,
     "my-footer": Footer
   }
