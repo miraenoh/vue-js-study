@@ -14,7 +14,14 @@ export default {
     };
   },
   destroyed() {
-    console.log('Destroyed!');
+    console.log("Destroyed!");
+  },
+  // When we used <keep-alive> tag
+  deactivated() {
+    console.log("Deactivated!");
+  },
+  activated() {
+    console.log("Activated!");
   }
 };
 </script>
