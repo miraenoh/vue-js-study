@@ -21,11 +21,12 @@
         <br />
         <br />
         <ul class="list-group">
-          <li
-            class="list-group-item"
-            v-for="user in users"
-            :key="user"
-          >{{ user.username }} - {{ user.email }}<br><br>{{ user.file }}</li>
+          <li class="list-group-item" v-for="user in users" :key="user">
+            {{ user.username }} - {{ user.email }}
+            <br />
+            <br />
+            {{ user.file }}
+          </li>
         </ul>
       </div>
     </div>
@@ -41,7 +42,7 @@ export default {
         email: "",
         file: null
       },
-      users: [],
+      users: []
     };
   },
   methods: {
@@ -49,20 +50,18 @@ export default {
       this.user.file = event.target.files[0];
     },
     submit() {
-      this.$http
-        .post("https://vuejs-http-44327.firebaseio.com/data.json", this.user)
-        .then(
-          response => {
-            console.log(response);
-          },
-          error => {
-            console.log(error);
-          }
-        );
+      this.$http.post("", this.user).then(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     },
     fetchData() {
       this.$http
-        .get("https://vuejs-http-44327.firebaseio.com/data.json")
+        .get("")
         .then(response => {
           return response.json();
         })
