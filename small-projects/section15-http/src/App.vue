@@ -62,7 +62,9 @@ export default {
       ); */
 
       // New solution using resource
-      this.resource.save({}, this.user);
+      // this.resource.save({}, this.user);
+      // Save to alternative by using the custom action
+      this.resource.saveAlternative(this.user);
     },
     fetchData() {
       this.$http
@@ -80,7 +82,10 @@ export default {
     }
   },
   created() {
-    this.resource = this.$resource("data.json");
+    const customActions = {
+      saveAlternative: { method: "POST", url: "alternative.json" }
+    };
+    this.resource = this.$resource("data.json", {}, customActions);
   }
 };
 </script>
