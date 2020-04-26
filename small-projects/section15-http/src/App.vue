@@ -17,6 +17,8 @@
         </div>
         <button class="btn btn-primary" @click="submit">Submit</button>
         <hr />
+        <input type="text" class="form-control" v-model="node" />
+        <hr />
         <button class="btn btn-primary" @click="fetchData">Get Data</button>
         <br />
         <br />
@@ -43,7 +45,8 @@ export default {
         file: null
       },
       users: [],
-      resource: {}
+      resource: {},
+      node: "data"
     };
   },
   methods: {
@@ -67,8 +70,20 @@ export default {
       this.resource.saveAlternative(this.user);
     },
     fetchData() {
-      this.$http
+      /*       this.$http
         .get("data.json")
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          const resultArray = [];
+          for (let key in data) {
+            resultArray.push(data[key]);
+          }
+          this.users = resultArray;
+        }); */
+      this.resource
+        .getData({ node: this.node })
         .then(response => {
           return response.json();
         })
@@ -83,9 +98,10 @@ export default {
   },
   created() {
     const customActions = {
-      saveAlternative: { method: "POST", url: "alternative.json" }
+      saveAlternative: { method: "POST", url: "alternative.json" },
+      getData: { method: "Get" }
     };
-    this.resource = this.$resource("data.json", {}, customActions);
+    this.resource = this.$resource("{node}.json", {}, customActions);
   }
 };
 </script>
