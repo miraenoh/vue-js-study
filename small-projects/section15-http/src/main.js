@@ -7,7 +7,7 @@ Vue.config.productionTip = false;
 Vue.use(VueResource);
 
 // $ is not required because here's "main.js"
-Vue.http.options.root = "https://vuejs-http-44327.firebaseio.com/data.json";
+Vue.http.options.root = "https://vuejs-http-44327.firebaseio.com/";
 // Intercept a request and do something
 Vue.http.interceptors.push((request, next) => {
   console.log(request);

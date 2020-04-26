@@ -42,7 +42,8 @@ export default {
         email: "",
         file: null
       },
-      users: []
+      users: [],
+      resource: {}
     };
   },
   methods: {
@@ -50,18 +51,22 @@ export default {
       this.user.file = event.target.files[0];
     },
     submit() {
-      this.$http.post("", this.user).then(
+      // Previous solution
+      /*       this.$http.post("data.json", this.user).then(
         response => {
           console.log(response);
         },
         error => {
           console.log(error);
         }
-      );
+      ); */
+
+      // New solution using resource
+      this.resource.save({}, this.user);
     },
     fetchData() {
       this.$http
-        .get("")
+        .get("data.json")
         .then(response => {
           return response.json();
         })
@@ -73,6 +78,9 @@ export default {
           this.users = resultArray;
         });
     }
+  },
+  created() {
+    this.resource = this.$resource("data.json");
   }
 };
 </script>
